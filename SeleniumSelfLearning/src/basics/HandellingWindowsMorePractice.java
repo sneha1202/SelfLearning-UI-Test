@@ -1,0 +1,46 @@
+package basics;
+
+import java.util.Set;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+
+public class HandellingWindowsMorePractice {
+
+	public static void main(String[] args) {
+		
+		System.setProperty("WebDriver.geckodriver", "geckodriver.exe");
+		//I just write the every steps and print it for my convienience.
+		WebDriver driver=new FirefoxDriver();
+		driver.get("http://www.rediff.com/");
+		driver.switchTo().frame("moneyiframe");
+		System.out.println("Am in the frame");//When you will click on element you will see moneyiframe in the name of the frame.
+		driver.findElement(By.id("query")).sendKeys("TCS");
+		System.out.println("I enterd the text in the text box");//Right click on test box and you will find id=query.
+		driver.findElement(By.className("mw001-widget-getquote-btn")).click();
+		System.out.println("i clicked on the button");
+		//you can find the element of get quote by classname because there is only classname locator.
+		
+		driver.switchTo().defaultContent();// As per the java docs this method selects either the firstframe on the page or main document when page contains iframe.
+		System.out.println("I go back to the top window");
+		//Fetching the name of the window
+      String parent  =driver.getWindowHandle();
+      System.out.println("Parent name ::" + parent);
+  Set<String> wset =driver.getWindowHandles();
+  System.out.println("Size of the set" +wset.size());//it will count all the window opened by webdriver it has focus or opened by webdriver.
+  
+    //when i print the size of the set what will be outcome
+ //So we need to know the name of the window that is second window name that way we can easily switch. 
+  //We can not use get method in case of set so we have to use Enhancer For loop---
+  
+ //For each string s stored  in window set first fetch it.print the value of s.
+  
+  for(String s:wset)
+  {
+	  System.out.println("wset values " +s);
+  }
+      
+		
+	}
+}

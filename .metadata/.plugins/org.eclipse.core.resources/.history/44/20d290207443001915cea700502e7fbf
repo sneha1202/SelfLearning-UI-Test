@@ -1,0 +1,30 @@
+package basics;
+
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.firefox.FirefoxDriver;
+
+public class FindElementsPracticeonRediffWebSite {
+	public static void main(String[] args) {
+		
+		System.setProperty("WebDriver.geckodriver", "geckodriver.exe");
+		WebDriver driver=new FirefoxDriver();
+		driver.get("https://money.rediff.com/gainers/bse/daily");
+		
+	List<WebElement> Stocklist=driver.findElements(By.xpath("//table[@class=datatable']/tbody/tr/td[1]"));
+	System.out.println("Number of Stock"+Stocklist.size());
+	
+	for(int i=0;i<Stocklist.size();i++)	
+	{
+	String Stockname =Stocklist.get(i).getText();
+	if(Stockname.contains("Ansal Buildwell "))
+	{
+		System.out.println("Row number is"+i+1);
+		break;
+	}
+}
+}
+}

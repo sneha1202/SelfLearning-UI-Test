@@ -1,0 +1,23 @@
+package basics;
+
+import org.openqa.selenium.firefox.FirefoxDriver;
+
+public class BrowserEx {
+	
+	public static void main(String[] args) {
+		
+		System.setProperty("WebDriver.gecko.driver","gecko.driver.exe");
+		//open the browser without opening url
+		FirefoxDriver driver=new FirefoxDriver();
+		//Enter the  url
+		driver.get("http://www.indeed.co.in");
+		//Retrieve the title
+		String title=driver.getTitle();
+		//Print the title in console
+		System.out.println("Title of the page" + title);
+		//Close the browser
+		driver.close();
+		
+	}
+
+}
